@@ -4,7 +4,7 @@ var map;
 var markers = new Array();
 
 // Ogni x secondi ricarica i markers
-setInterval(ricaricaMarkers, 10000);
+setInterval(ricaricaMarkers, refreshTime);
 
 function initMap() {
     var myLatLng = { lat: 43.238517, lng: 13.644644 };
