@@ -86,13 +86,13 @@ function getIcon(state) {
   // In base allo stato prende l'icona del colore corrispondente
   switch (state) {
     case "offline": {
-      return "img/marker-red.png";
+      return "img/marker-blue.png";
     }
     case "pieno": {
-      return "img/marker-green.png";
+      return "img/marker-red.png";
     }
     case "vuoto": {
-      return "img/marker-white.png";
+      return "img/marker-green.png";
     }
     default: {
       return false;
