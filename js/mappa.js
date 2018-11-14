@@ -2,6 +2,7 @@
 
 var map;
 var markers = new Array();
+var filtro = undefined;
 
 // Ogni x secondi ricarica i markers
 setInterval(ricaricaMarkers, refreshTime);
@@ -27,8 +28,11 @@ function initMarkers() {
     getDeviceStatus(device, function (cestino) {
       // Controlla se il cestino è connesso
       if (!cestino.connected) {
-        console.log(device, "- Cestino Offline");
-        addMarker(device, "offline", devices[device]);
+        // Controllo sul filtro
+        if (filtro === undefined || filtro === "offline") {
+          console.log(device, "- Cestino Offline");
+          addMarker(device, "offline", devices[device]);
+        }
 
         return;
       }
@@ -36,14 +40,20 @@ function initMarkers() {
       // Controlla se il cestino è pieno o vuoto
       switch (cestino.return_value) {
         case 0: {
-          console.log(device, "- Cestino Vuoto");
-          addMarker(device, "vuoto", devices[device]);
+          // Controllo sul filtro
+          if (filtro === undefined || filtro === "vuoto") {
+            console.log(device, "- Cestino Vuoto");
+            addMarker(device, "vuoto", devices[device]);
+          }
 
           break;
         }
         case 1: {
-          console.log(device, "- Cestino Pieno");
-          addMarker(device, "pieno", devices[device]);
+          // Controllo sul filtro
+          if (filtro === undefined || filtro === "pieno") {
+            console.log(device, "- Cestino Pieno");
+            addMarker(device, "pieno", devices[device]);
+          }
 
           break;
         }
@@ -69,9 +79,23 @@ function addMarker(device, state, location) {
   markers.push(marker);
 }
 
-function clearMarkers() {
+function clearFilteredMarkers(state) {
+  var filteredMarkers = markers.filter(function (marker) {
+    if (marker.state != state) return marker;
+  });
+
+  filteredMarkers.forEach(function (marker) {
+    marker.setMap(null);
+  });
+
+  markers = markers.filter(function (marker) {
+    if (marker.state == state) return marker;
+  });
+}
+
+function clearOldMarkers() {
   // Salva il numero di marker vecchi
-  var numMarkerVecchi = (markers.length / 2);
+  var numMarkerVecchi = markers.length === 1 ? 1 : (markers.length / 2);
 
   // Rimuove i vecchi marker dalla mappa
   for (var i = 0; i < numMarkerVecchi; i++) {
@@ -80,6 +104,16 @@ function clearMarkers() {
 
   // Rimuove i vecchi marker dalla memoria
   markers.splice(0, numMarkerVecchi);
+}
+
+function clearAllMarkers() {
+  // Rimuove tutti i markers dalla mappa
+  markers.forEach(function (marker) {
+    marker.setMap(null);
+  });
+
+  // Rimuove i marker dalla memoria
+  markers = [];
 }
 
 function getIcon(state) {
@@ -106,6 +140,6 @@ function ricaricaMarkers() {
 
   // Non mostrare l'eliminazione dei marker sulla mappa all'utente
   setTimeout(function () {
-    clearMarkers();
+    clearOldMarkers();
   }, 300);
 }
