@@ -4,6 +4,7 @@ var refreshTime = localStorage.getItem("refreshTime") || 30000;
 
 window.onload = function () {
   impostaValoriRefreshTime();
+  impostaValoriSimulazione();
 };
 
 function impostaValoriRefreshTime () {
