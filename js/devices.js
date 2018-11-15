@@ -8,10 +8,6 @@ var devices = {
   "dev_STB03": [43.238184, 13.644847, "Via Trinità"],
 };
 
-window.onload = function () {
-  impostaStatistiche();
-};
-
 // Invia una richiesta per lo stato di un dispositivo (Es: "dev_STB01")
 function getDeviceStatus(device, callback) {
 	var xmlHttp = new XMLHttpRequest();
