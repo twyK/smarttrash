@@ -227,8 +227,30 @@
     <script src="js/autoload.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5DWVC7PCN67x892x86HFfR5yKZ8sny8&callback=initMap"></script>
     <!-- Fine Scripts -->
-    <footer style="background-color: #111111; text-align: center; color: white;">&copy; SmarTTrash – A.S 2018-19 –
-        Sviluppato dal 4° IN B</footer>
+    <footer style="background-color: #111111; text-align: center; color: white;">
+        
+            <div id="my-id"  >
+                &copy; SmarTTrash – A.S 2018-19 – Sviluppato dal
+                
+                <a style="color:white; background-color:#1a1a1a  " href="#modal-example" uk-toggle>4° INB</a>
+
+                <!-- This is the modal -->
+                <div id="modal-example" uk-modal>
+                    <div class="uk-modal-dialog">
+                        <button class="uk-modal-close-default" type="button" uk-close></button>
+                        <div class="uk-modal-header">
+                            <h2 class="uk-modal-title">Sito realizzato da:</h2>
+                        </div>
+                        <div class="uk-modal-body  ">
+                            - Basili Alessandro  <br> - Brandimarte Andrea  <br> - Colletta Lorenzo  <br> - Giacobbi Domenico Francesco  <br> - Martellini Matteo     
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        
+    
+    </footer>
 </body>
 
 </html>
