@@ -10,14 +10,19 @@ function impostaFiltro (el, state) {
 
   // Cambia il colore di sfondo del bottone
   resetBackgroundColor();
-  el.style.backgroundColor = "#3f4040";
+  el.classList.add("btnFilterActive");
+  el.classList.remove("btnFilter");
 
   clearFilteredMarkers(state);
   initMarkers();
 }
 
 function resetBackgroundColor () {
-  document.getElementById("filtro-tutti").style.backgroundColor = "#838787";
-  document.getElementById("filtro-pieni").style.backgroundColor = "#838787";
-  document.getElementById("filtro-vuoti").style.backgroundColor = "#838787";
+  document.getElementById("filtro-tutti").classList.remove("btnFilterActive");
+  document.getElementById("filtro-pieni").classList.remove("btnFilterActive");
+  document.getElementById("filtro-vuoti").classList.remove("btnFilterActive");
+
+  document.getElementById("filtro-tutti").classList.add("btnFilter");
+  document.getElementById("filtro-pieni").classList.add("btnFilter");
+  document.getElementById("filtro-vuoti").classList.add("btnFilter");
 }

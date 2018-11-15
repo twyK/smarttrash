@@ -10,3 +10,23 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
+.btnFilter {
+    background-color: #838787;
+}
+
+.btnFilter:hover {
+    background-color: #717373;
+}
+
+.btnFilter:active {
+    background-color: #3f4040;
+}
+
+.btnFilterActive {
+    background-color: #3f4040;
+}
+
+.btnFilterActive:hover {
+    background-color: #3f4040;
+}
