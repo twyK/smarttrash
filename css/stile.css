@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     background-color: #222222;
     height: 100%;
     margin: 0;
@@ -11,6 +12,7 @@ html, body {
     width: 70%;
 }
 
+/* Bottoni Filtri */
 .btnFilter {
     background-color: #838787;
 }
@@ -29,4 +31,19 @@ html, body {
 
 .btnFilterActive:hover {
     background-color: #3f4040;
+}
+
+/* Tabella */
+.Tabella {
+    display: inline-block;
+    padding-left: 28%;
+}
+
+.Legenda {
+    display: inline-block;
+    padding-left: 20%;
+}
+
+.Tab {
+    color: white;
 }

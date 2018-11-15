@@ -11,42 +11,26 @@
         crossorigin="anonymous">
     <script src="js/uikit.min.js"></script>
     <script src="js/uikit-icons.min.js"></script>
-    <style>
-        .Tabella
-        {
-          display : inline-block;
-          padding-left : 28%;
-        }
-        .Legenda
-        {
-          display : inline-block;
-          padding-left : 20%;
-        }
-        .Tab
-        {
-          color:white;
-        }
-        </style>
 </head>
 
 <body>
     <!-- Header -->
     <div style="width: 70%; background-color: #222222; padding-left: 15%;">
         <div class=" uk-child-width-1-3@m" uk-grid>
-            <div style="width: 25%; ">
+            <div style="width: 25%;">
 
             </div>
             <div style="width: 50%;  ">
-                <img src="img\logo.png" style="max-width:805px; width: 100%; height: auto; ">
+                <img src="img\logo.png" style="max-width:805px; width: 100%; height: auto; "><br><br><br>
             </div>
             <div style="width: 25%; " class="uk-flex">
                 <div class="uk-panel uk-light uk-flex uk-margin-auto uk-margin-auto-vertical">
-                    <button style="border:none;" class="uk-align-right uk-button uk-button-default" type="button"
-                        uk-toggle="target: #modal-close-default">
+                    <button style="border:none;" class="uk-button uk-button-default" type="button"
+                        uk-toggle="target: #modal-settings">
                         Impostazioni&nbsp;
                         <i style="font-size: 20px; padding-right:10px;" class="fas fa-cogs"></i>
                     </button>
-                    <div id="modal-close-default" uk-modal>
+                    <div id="modal-settings" uk-modal>
                         <div class="uk-modal-dialog uk-modal-body">
                             <form onsubmit="salvaImpostazioni()">
                                 <h2 class="uk-modal-title">Impostazioni</h2>
@@ -94,12 +78,9 @@
 
 
     <!-- Mappa -->
-    <div id="map"></div>
+    <div id="map"></div><br>
     <!-- Fine Mappa -->
 
-    <br><br>
-
-    <br><br>
     <div style="width : 80%; padding-left : 5%;" class="uk-column-1-2">
         <!-- Statistiche -->
         <p>
