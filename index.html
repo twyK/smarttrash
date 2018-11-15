@@ -1,258 +1,174 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>SmarTTrash</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <link rel="stylesheet" href="css/stile.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+    </head>
+    <body>
 
-<head>
-    <title>SmarTTrash</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/uikit.min.css" />
-    <link rel="stylesheet" href="css/stile.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-        crossorigin="anonymous">
-    <script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
-    <style>
-        .Tabella
-        {
-          display : inline-block;
-          padding-left : 28%;
-        }
-        .Legenda
-        {
-          display : inline-block;
-          padding-left : 20%;
-        }
-        .Tab
-        {
-          color:white;
-        }
-        </style>
-</head>
-
-<body>
-    <!-- Header -->
-    <div style="width: 70%; background-color: #222222; padding-left: 15%;">
-        <div class=" uk-child-width-1-3@m" uk-grid>
-            <div style="width: 25%; ">
-
-            </div>
-            <div style="width: 50%;  ">
-                <img src="img\logo.png" style="max-width:805px; width: 100%; height: auto; ">
-            </div>
-            <div style="width: 25%; " class="uk-flex">
-                <div class="uk-panel uk-light uk-flex uk-margin-auto uk-margin-auto-vertical">
-                    <button style="border:none;" class="uk-align-right uk-button uk-button-default" type="button" uk-toggle="target: #modal-close-default">
-                        Impostazioni&nbsp;
-                        <i style="font-size: 20px; padding-right:10px;" class="fas fa-cogs"></i>
-                    </button>
-                    <div id="modal-close-default" uk-modal>
-                        <div class="uk-modal-dialog uk-modal-body">
-                            <button class="uk-modal-close-default" type="button" uk-close></button>
-                            <h2 class="uk-modal-title">Impostazioni</h2>
-                            <h3 style="color:#595959;">Tempo di aggiornamento della mappa:</h3>
-                            <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                                <input id="refreshSetting" class="uk-input uk-form-small" type="number" min=3 max=259200
-                                    placeholder="Tempo di aggiornamento">&nbsp;secondi
+        <!-- Header -->
+        <div style="width: 70%; background-color: #222222; padding-left: 15%;">
+                <div class=" uk-child-width-1-3@m" uk-grid>
+                    <div style="width: 25%; ">
+                        
+                    </div>
+                    <div style="width: 50%;  ">
+                        <img src="img\LOGO.png" style="max-width:805px; width: 100%; height: auto; " >
+                    </div>
+                    <div style="width: 25%; " class="uk-flex">
+                        <div class="uk-panel  uk-light uk-flex uk-margin-auto  uk-margin-auto-vertical">
+                            <button style="border:none;" class=" uk-button uk-button-default" type="button" uk-toggle="target: #modal-close-default">
+                                Impostazioni&nbsp;
+                                <i style="font-size: 20px; padding-right:10px;" class="fas fa-cogs"></i>
+                            </button>
+                            <div id="modal-close-default" uk-modal>
+                                <div class="uk-modal-dialog uk-modal-body">
+                                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                                    <h2  class="uk-modal-title">Impostazioni</h2>
+                                    <h3 style="color:#595959;">Tempo di aggiornamento della mappa:</h3>
+                                    <form id="tempo">
+                                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                                        <label><input class="uk-radio" type="radio" name="radio2" checked>30s</label>
+                                        <label><input class="uk-radio" type="radio" name="radio2">2min</label>
+                                        <label><input class="uk-radio" type="radio" name="radio2">5min</label>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                                <label><strong>Simulazione devices:</strong> <input id="simulationBox" class="uk-checkbox" type="checkbox"></label>
-                            </div>
-                            <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-                                <button class="uk-button uk-button-primary uk-button-small" onclick="salvaImpostazioni()">Salva</button>
-                            </div>
+                        </div> 
+                    </div>
+                </div>          
+        </div>
+        <!-- Fine Header -->
+        
+        <!-- Topbar Mappa -->
+        <div style="width: 70%; background-color: #222222; padding-left: 15%;">
+                <div class=" uk-child-width-1-3@m" uk-grid>
+                    <div style="width: 50%; ">
+                        <h2 style="color: white;">Mappa Cestini</h2>
+                    </div>
+                    <div style="width: 50%;" >
+                         <div style="float:right;" class="   uk-panel  uk-button-group">
+                            <button  style="background-color: #838787;" class="uk-button uk-button-primary">Tutti <i style="color: #34a5da;" class="fas fa-trash"></i></button>
+                            <button  style="background-color: #838787;" class="uk-button uk-button-primary">Pieni <i style="color: #00a14b;" class="fas fa-trash"></i></button>
+                            <button  style="background-color: #838787;" class="uk-button uk-button-primary">Vuoti <i style="color: #d5d5d5;" class="fas fa-trash"></i></button>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>          
         </div>
-    </div>
-    <!-- Fine Header -->
+        <!-- Fine Topbar Mappa -->
 
-    <!-- Topbar Mappa -->
-    <div style="width: 70%; background-color: #222222; padding-left: 15%;">
-        <div class=" uk-child-width-1-3@m" uk-grid>
-            <div style="width: 50%; ">
-                <h2 style="color: white;">Mappa Cestini</h2>
-            </div>
-            <div style="width: 50%;">
-                <div style="float:right;" class="uk-panel uk-button-group">
-                    <button id="filtro-tutti" style="background-color: #3f4040;" class="uk-button uk-button-primary" onclick="impostaFiltro(this, 'tutti');">Tutti <i style="color: #f1f3f2;"
-                            class="fas fa-trash"></i></button>
-                    <button id="filtro-pieni" style="background-color: #838787;" class="uk-button uk-button-primary" onclick="impostaFiltro(this, 'pieno');">Pieni <i style="color: #dc4b3e;"
-                            class="fas fa-trash"></i></button>
-                    <button id="filtro-vuoti" style="background-color: #838787;" class="uk-button uk-button-primary" onclick="impostaFiltro(this, 'vuoto');">Vuoti <i style="color: #00a14b;"
-                            class="fas fa-trash"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Fine Topbar Mappa -->
+        
 
+        <!-- Mappa -->
+        <div id="map"></div>
+        <!-- Fine Mappa -->
 
+        <br><br>
 
-    <!-- Mappa -->
-    <div id="map"></div>
-    <!-- Fine Mappa -->
-
-    <br><br>
-
-    <br><br>
-    <div style="width : 80%; padding-left : 5%;" class="uk-column-1-2">
         <!-- Statistiche -->
-        <p>
-            <div class="Tabella" style="width: 600px;margin-left: 20px;margin-right: 20px;">
-                <h2 style="color:white;">Statistiche</h2>
-                <table class="uk-table">
-                    <tbody>
-                        <tr>
-                            <td style="color:white;">Cestini totali</td>
-                            <td><span class="uk-label">2</span></td>
-                            <td><a style="background-color:#1e87f0; color: white;" class="uk-button uk-button-default"
-                                    href="#modal-sections" uk-toggle>Visualizza</a>
+        <div class="tabella" style="width: 600px;margin-left: 20px;">
+            <h2>Statistiche</h2>
+            <table class="uk-table uk-table-justify uk-table-divider">
+                <tbody>
+                    <tr>
+                        <td>Cestini totali</td>
+                        <td>1</td>
+                        <td><a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Open</a>
 
-                                <div id="modal-sections" uk-modal>
-                                    <div class="uk-modal-dialog">
-                                        <button class="uk-modal-close-default" type="button" uk-close></button>
-                                        <div class="uk-modal-header">
-                                            <h2 class="uk-modal-title">Cestini totali</h2>
-                                        </div>
-                                        <div class="uk-modal-body">
-                                            <ul class="uk-list uk-list-divider">
-												<li><span id="totali1">via Santa</span></li>
-												<li><span id="totali2">via Maria Maddalena</span></li>
-												<li><span id="totali3">via Giuseppe Pippa</span></li>
-											</ul>
-                                        </div>
-                                        <div class="uk-modal-footer uk-text-right">
-                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
-                                        </div>
-                                    </div>
+                        <div id="modal-sections" uk-modal>
+                            <div class="uk-modal-dialog">
+                                <button class="uk-modal-close-default" type="button" uk-close></button>
+                                <div class="uk-modal-header">
+                                    <h2 class="uk-modal-title">Modal Title</h2>
                                 </div>
-                            </td>
+                                <div class="uk-modal-body">
+                                    <p>1</p>
+                                </div>
+                                <div class="uk-modal-footer uk-text-right">
+                                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                    <button class="uk-button uk-button-primary" type="button">Save</button>
+                                </div>
+                            </div>
+                        </div></td>
                         </tr>
                         <tr>
-                            <td style="color:white;">Cestini pieni</td>
-                            <td><span class="uk-label">2</span></td>
-                            <td><a style="background-color:#1e87f0; color: white;" class="uk-button uk-button-default"
-                                    href="#modal-sections" uk-toggle>Visualizza</a>
+                            <td>Cestini pieni</td>
+                            <td>2</td>
+                            <td><a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Open</a>
 
-                                <div id="modal-sections" uk-modal>
-                                    <div class="uk-modal-dialog">
-                                        <button class="uk-modal-close-default" type="button" uk-close></button>
-                                        <div class="uk-modal-header">
-                                            <h2 class="uk-modal-title">Cestini pieni</h2>
-                                        </div>
-                                        <div class="uk-modal-body">
-                                            <ul class="uk-list uk-list-divider">
-												<li><span id="pieni1">via Santa</span></li>
-												<li><span id="pieni2">via Maria Maddalena</span></li>
-												<li><span id="pieni3">via Giuseppe Pippa</span></li>
-											</ul>
-                                        </div>
-                                        <div class="uk-modal-footer uk-text-right">
-                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
-                                        </div>
+                            <div id="modal-sections" uk-modal>
+                                <div class="uk-modal-dialog">
+                                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                                    <div class="uk-modal-header">
+                                        <h2 class="uk-modal-title">Modal Title</h2>
+                                    </div>
+                                    <div class="uk-modal-body">
+                                        <p>2</p>
+                                    </div>
+                                    <div class="uk-modal-footer uk-text-right">
+                                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                        <button class="uk-button uk-button-primary" type="button">Save</button>
                                     </div>
                                 </div>
-                            </td>
+                            </div></td>
                         </tr>
                         <tr>
-                            <td style="color:white;">Cestini vuoti</td>
-                            <td><span class="uk-label">2</span></td>
-                            <td><a style="background-color:#1e87f0; color: white;" class="uk-button uk-button-default"
-                                    href="#modal-sections" uk-toggle>Visualizza</a>
+                            <td>Cestini vuoti</td>
+                            <td>2</td>
+                            <td><a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Open</a>
 
-                                <div id="modal-sections" uk-modal>
-                                    <div class="uk-modal-dialog">
-                                        <button class="uk-modal-close-default" type="button" uk-close></button>
-                                        <div class="uk-modal-header">
-                                            <h2 class="uk-modal-title">Cestini vuoti</h2>
-                                        </div>
-                                        <div class="uk-modal-body">
-                                            <ul class="uk-list uk-list-divider">
-												<li><span id="vuoti1">via Santa</span></li>
-												<li><span id="vuoti2">via Maria Maddalena</span></li>
-												<li><span id="vuoti3">via Giuseppe Pippa</span></li>
-											</ul>
-                                        </div>
-                                        <div class="uk-modal-footer uk-text-right">
-                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
-                                        </div>
+                            <div id="modal-sections" uk-modal>
+                                <div class="uk-modal-dialog">
+                                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                                    <div class="uk-modal-header">
+                                        <h2 class="uk-modal-title">Modal Title</h2>
+                                    </div>
+                                    <div class="uk-modal-body">
+                                        <p>2</p>
+                                    </div>
+                                    <div class="uk-modal-footer uk-text-right">
+                                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                        <button class="uk-button uk-button-primary" type="button">Save</button>
                                     </div>
                                 </div>
-                            </td>
+                            </div></td>
                         </tr>
                         <tr>
-                            <td style="color:white;">Cestini non connessi</td>
-                            <td><span class="uk-label">2</span></td>
-                            <td><a style="background-color:#1e87f0; color: white;" class="uk-button uk-button-default"
-                                    href="#modal-sections" uk-toggle>Visualizza</a>
+                            <td>Cestini non connessi</td>
+                            <td>1</td>
+                            <td><a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Open</a>
 
-                                <div id="modal-sections" uk-modal>
-                                    <div class="uk-modal-dialog">
-                                        <button class="uk-modal-close-default" type="button" uk-close></button>
-                                        <div class="uk-modal-header">
-                                            <h2 class="uk-modal-title">Cestini non connessi</h2>
-                                        </div>
-                                        <div class="uk-modal-body">
-                                            <ul class="uk-list uk-list-divider">
-												<li><span id="non_connessi1">via Santa</span></li>
-												<li><span id="non_connessi2">via Maria Maddalena</span></li>
-												<li><span id="non_connessi3">via Giuseppe Pippa</span></li>
-											</ul>
-                                        </div>
-                                        <div class="uk-modal-footer uk-text-right">
-                                            <button class="uk-button uk-button-default uk-modal-close" type="button">Chiudi</button>
-                                        </div>
+                            <div id="modal-sections" uk-modal>
+                                <div class="uk-modal-dialog">
+                                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                                    <div class="uk-modal-header">
+                                        <h2 class="uk-modal-title">Modal Title</h2>
+                                    </div>
+                                    <div class="uk-modal-body">
+                                        <p>2</p>
+                                    </div>
+                                    <div class="uk-modal-footer uk-text-right">
+                                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                        <button class="uk-button uk-button-primary" type="button">Save</button>
                                     </div>
                                 </div>
-                            </td>
+                            </div></td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
-        </p>
+                </tbody>
+            </table>
+        </div>
         <!-- Fine Statistiche -->
-        <p>
-            <div class="Legenda uk-align-right">
-                <table class="uk-table">
-                    <thead>
-                        <td>
-                            <h2 style="color: white;">Legenda</h2>
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="padding-left : 30px"><img width=40px; height=40px; src="img/marker-green.png"></td>
-                            <td style="color:white;">Cestino vuoto</td>
-                        </tr>
-                        <tr>
-                            <td style="padding-left : 30px"><img width=40px; height=40px; src="img/marker-red.png"></td>
-                            <td style="color:white;">Cestino pieno</td>
-                        </tr>
-                        <tr>
-                            <td style="padding-left : 30px"><img width=40px; height=40px; src="img/marker-blue.png"></td>
-                            <td style="color:white;">Cestino offline</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </p>
-    </div>
 
-    <!-- Scripts -->
-    <script src="js/impostazioni.js"></script>
-    <script src="js/devices.js"></script>
-    <script src="js/mappa.js"></script>
-    <script src="js/filtri.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5DWVC7PCN67x892x86HFfR5yKZ8sny8&callback=initMap"></script>
-    <!-- Fine Scripts -->
-	<footer style="background-color: #111111; text-align: center; color: white;">&copy; SmarTTrash – A.S 2018-19 – Sviluppato dal 4° IN B</footer>
-</body>
-
+        <!-- Script Mappa -->
+        <script src="js/mappa.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBh5DWVC7PCN67x892x86HFfR5yKZ8sny8&callback=initMap"></script>
+        <!-- Fine Script Mappa -->
+    </body>
 </html>
-
-
-
