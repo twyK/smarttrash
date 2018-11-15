@@ -8,6 +8,10 @@ var devices = {
   "dev_STB03": [43.238184, 13.644847],
 };
 
+window.onload = function () {
+  setDeviceNumber();
+};
+
 // Invia una richiesta per lo stato di un dispositivo (Es: "dev_STB01")
 function getDeviceStatus(device, callback) {
 	var xmlHttp = new XMLHttpRequest();
@@ -21,4 +25,11 @@ function getDeviceStatus(device, callback) {
 
   xmlHttp.open("GET", apiEndpoint + device + "/digital/4", true);
   xmlHttp.send(null);
+}
+
+function setDeviceNumber () {
+  document.getElementById("num-totali").innerHTML = parseInt(numCestini[0] + numCestini[1] + numCestini[2]);
+  document.getElementById("num-pieni").innerHTML = parseInt(numCestini[0]);
+  document.getElementById("num-vuoti").innerHTML = parseInt(numCestini[1]);
+  document.getElementById("num-offline").innerHTML = parseInt(numCestini[2]);
 }

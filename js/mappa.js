@@ -3,6 +3,7 @@
 var map;
 var markers = new Array();
 var filtro = undefined;
+var numCestini = [0, 0, 0]; // Pieni, Vuoti, Offline
 
 // Ogni x secondi ricarica i markers
 setInterval(ricaricaMarkers, refreshTime);
@@ -22,12 +23,19 @@ function initMap() {
 }
 
 function initMarkers() {
+  // Azzera il numero di cestini
+  numCestini = [0, 0, 0];
+
   console.log("Markers caricati:");
+  
   // Itera tutti i devices
   Object.keys(devices).forEach(function(device) {
     getDeviceStatus(device, function (cestino) {
       // Controlla se il cestino è connesso
       if (!cestino.connected) {
+        // Aggiunge uno al numero di cestini
+        numCestini[2]++;
+
         // Controllo sul filtro
         if (filtro === undefined || filtro === "offline") {
           console.log(device, "- Cestino Offline");
@@ -40,6 +48,9 @@ function initMarkers() {
       // Controlla se il cestino è pieno o vuoto
       switch (cestino.return_value) {
         case 0: {
+          // Aggiunge uno al numero di cestini
+          numCestini[1]++;
+
           // Controllo sul filtro
           if (filtro === undefined || filtro === "vuoto") {
             console.log(device, "- Cestino Vuoto");
@@ -49,6 +60,9 @@ function initMarkers() {
           break;
         }
         case 1: {
+          // Aggiunge uno al numero di cestini
+          numCestini[0]++;
+
           // Controllo sul filtro
           if (filtro === undefined || filtro === "pieno") {
             console.log(device, "- Cestino Pieno");
@@ -141,5 +155,8 @@ function ricaricaMarkers() {
   // Non mostrare l'eliminazione dei marker sulla mappa all'utente
   setTimeout(function () {
     clearOldMarkers();
+    
+    // Reimposta il numero di devices
+    setDeviceNumber();
   }, 300);
 }
