@@ -86,7 +86,8 @@ function addMarker(device, state, location) {
     map: map,
     title: device,
     state: state,
-    icon: icon
+    icon: icon,
+    localita: location[2]
   });
 
   // Salva il marker in memoria
@@ -157,6 +158,6 @@ function ricaricaMarkers() {
     clearOldMarkers();
     
     // Reimposta il numero di devices
-    setDeviceNumber();
+    impostaStatistiche();
   }, 300);
 }

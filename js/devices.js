@@ -3,13 +3,13 @@
 var apiEndpoint = localStorage.getItem("api") || "https://cloud.arest.io/";
 
 var devices = {
-  "dev_STB01": [43.238613, 13.644356],
-  "dev_STB02": [43.238283, 13.643857],
-  "dev_STB03": [43.238184, 13.644847],
+  "dev_STB01": [43.238613, 13.644356, "Via S. Giovanni"],
+  "dev_STB02": [43.238283, 13.643857, "Via S. Giovanni"],
+  "dev_STB03": [43.238184, 13.644847, "Via Trinità"],
 };
 
 window.onload = function () {
-  setDeviceNumber();
+  impostaStatistiche();
 };
 
 // Invia una richiesta per lo stato di un dispositivo (Es: "dev_STB01")
@@ -27,7 +27,7 @@ function getDeviceStatus(device, callback) {
   xmlHttp.send(null);
 }
 
-function setDeviceNumber () {
+function impostaStatistiche () {
   document.getElementById("num-totali").innerHTML = parseInt(numCestini[0] + numCestini[1] + numCestini[2]);
   document.getElementById("num-pieni").innerHTML = parseInt(numCestini[0]);
   document.getElementById("num-vuoti").innerHTML = parseInt(numCestini[1]);
